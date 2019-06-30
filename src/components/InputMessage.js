@@ -3,12 +3,22 @@ import { Input } from "antd";
 
 const Search = Input.Search;
 
-const InputMessage = (onSubmit = () => {}) => (
+class InputMessage extends React.Component {
+    constructor () {
+        super();
+        this.state = {
+            value: ''
+        };
+    }
+
+render = () => (
   <Search
     placeholder="input message"
-    onSearch={value => onSubmit(value)}
+    value={this.state.value}
+    onChange={e => this.setState({ value : e.target.value})}
+    onSearch={value => { this.props.onSubmit(value); this.setState({value: ''});}}
     enterButton="Send"
   />
 );
-
+}
 export default InputMessage;

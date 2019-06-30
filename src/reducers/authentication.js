@@ -11,12 +11,14 @@ import {
 export type Authentication = {
   isLoggedIn: boolean,
   token: ?number,
-  isChecking: boolean
+  isChecking: boolean,
+  userName: ''
 };
 
 const defaultState: Authentication = {
   isLoggedIn: false,
   isChecking: false,
+  userName: '',
   token: undefined
 };
 
@@ -29,7 +31,8 @@ const authentication = (
       return {
         ...state,
         isLoggedIn: true,
-        isChecking: false
+        isChecking: false,
+        userName: action.email
       };
 
     case AUTHENTICATION_LOGIN_FAILURE:
